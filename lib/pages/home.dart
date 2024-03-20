@@ -1,7 +1,8 @@
-import 'package:all_keeper/widgets.dart';
+import 'package:all_keeper/widgets/btn.dart';
 import 'package:flutter/material.dart';
 
-import '../models/product.dart';
+import '../screens/create.dart';
+
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
@@ -15,6 +16,26 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+  // A method that launches the SelectionScreen and awaits the result from
+  // Navigator.pop.
+  Future<void> _navigateAndDisplayCreateScreen(BuildContext context) async {
+    // Navigator.push returns a Future that completes after calling
+    // Navigator.pop on the Selection Screen.
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const CreateScreen()),
+    );
+
+    // When a BuildContext is used from a StatefulWidget, the mounted property
+    // must be checked after an asynchronous gap.
+    if (!context.mounted) return;
+
+    // After the Selection Screen returns a result, hide any previous snackbars
+    // and show the new result.
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text('$result')));
   }
 
   @override
@@ -109,7 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed:(){
+          _navigateAndDisplayCreateScreen(context);
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
