@@ -33,10 +33,6 @@ class MyApp extends StatelessWidget {
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: AppBar(
-            title: Text("欢迎"),
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          ),
           body: const TabBarView(children: [
             MyHomePage(title: "首页"),
             ShoppingList(products: [
@@ -46,14 +42,6 @@ class MyApp extends StatelessWidget {
               Product(name: "D"),
             ])
           ]),
-          drawer: Drawer(
-            child: ShoppingList(products: [
-              Product(name: "菜单1"),
-              Product(name: "带单2"),
-              Product(name: "菜单3"),
-              Product(name: "菜单4"),
-            ]),
-          ),
           bottomNavigationBar: TabBar(tabs: [
             Tab(icon: Icon(Icons.home),),
             Tab(icon: Icon(Icons.list),),
