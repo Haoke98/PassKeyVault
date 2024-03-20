@@ -1,4 +1,3 @@
-import 'package:all_keeper/pages/shoppinglist.dart';
 import 'package:all_keeper/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -74,12 +73,40 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       drawer: Drawer(
-        child: ShoppingList(products: [
-          Product(name: "菜单1"),
-          Product(name: "带单2"),
-          Product(name: "菜单3"),
-          Product(name: "菜单4"),
-        ]),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0x697821F3),
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text('Close Drawer'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
